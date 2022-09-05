@@ -1,4 +1,4 @@
 <?php
-echo 'testando ... segundo commit';
+echo 'testando ... terceiro commit';
 echo 'ola';
 ?>
