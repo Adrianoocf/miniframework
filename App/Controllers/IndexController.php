@@ -2,7 +2,7 @@
     namespace App\Controllers;
 
     use MF\Controller\Action;
-    use App\Connection;
+    use MF\Model\Container;
     use App\Models\Produto;
     use App\Models\Info;
 
@@ -10,9 +10,7 @@
     {
         public function index()
         {
-            // $this->view->dados = array('Casa','Sofa','Cama');
-            $conn = Connection::getDb();
-            $produto = new Produto($conn);
+            $produto = Container::getModel('produto');
             $produtos = $produto->getProduto();
             $this->view->dados = $produtos;
             $this->render('index','layout1');
@@ -20,9 +18,7 @@
 
         public function sobreNos()
         {
-            // $this->view->dados = array('Celular','Notebook');
-            $conn = Connection::getDb();
-            $info = new Info($conn);
+            $info = Container::getModel('info');
             $infos = $info->getInfo();
             $this->view->dados = $infos;
             $this->render('sobreNos','layout2');
