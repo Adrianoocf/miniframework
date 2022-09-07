@@ -1,10 +1,11 @@
 <?php
  
-    echo '<h1>Sobre Nos</h1>';
-    foreach($dados as $key => $valor)
+    echo '<h3>Sobre Nos</h1>';
+    foreach($this->view->dados as $key => $info)
     {
-        $key++;
-        echo 'Produto ' .$key.' : ' .$valor.'<br>';
+        echo '<hr>';
+        echo '<h4>'.$info['titulo'].'</h4><br>';
+        echo $info['descricao'];
     }
        
 ?>

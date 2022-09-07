@@ -1,10 +1,12 @@
 <?php
  
-    echo '<h1>Index</h1>';
-    foreach($dados as $key => $valor)
+    echo '<h3>Index</h1>';
+    echo '<hr>';
+    foreach($this->view->dados as $key => $produto)
     {
         $key++;
-        echo 'Produto ' .$key.' : ' .$valor.'<br>';
+        echo 'Produto ' .$key.' : ' .$produto['descricao']. ' -> Preço : ' 
+        .$produto['preco']. '<br>';
     }
        
 ?>

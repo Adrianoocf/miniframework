@@ -1,34 +1,32 @@
 <?php
     namespace App\Controllers;
 
-    class IndexController
-    {
-        private $view;
+    use MF\Controller\Action;
+    use App\Connection;
+    use App\Models\Produto;
+    use App\Models\Info;
 
-        public function __construct()
-        {
-            $this->view = new \stdClass();            
-        }
-        
-        public function render($view)
-        {
-            $classAtual = get_class($this);
-            $classAtual = str_replace('App\\Controllers\\' ,'', $classAtual);
-            $classAtual = str_replace('Controller' ,'', $classAtual);
-            echo $classAtual;
-            require_once '../App/Views/' .$classAtual. '/' .$view. '.phtml';
-        }
-        
+    class IndexController extends Action
+    {
         public function index()
         {
-            $this->view->dados = array('Casa','Sofa','Cama');
-            $this->render('index');
+            // $this->view->dados = array('Casa','Sofa','Cama');
+            $conn = Connection::getDb();
+            $produto = new Produto($conn);
+            $produtos = $produto->getProduto();
+            $this->view->dados = $produtos;
+            $this->render('index','layout1');
         }
 
         public function sobreNos()
         {
-            $this->view->dados = array('Celular','Notebook');
-            $this->render('sobreNos');
+            // $this->view->dados = array('Celular','Notebook');
+            $conn = Connection::getDb();
+            $info = new Info($conn);
+            $infos = $info->getInfo();
+            $this->view->dados = $infos;
+            $this->render('sobreNos','layout2');
         }
+
     }
 ?>
